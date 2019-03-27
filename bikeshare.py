@@ -202,6 +202,8 @@ def user_stats(df):
     print('-'*40)
 
 def display_raw_data(df):
+    """Displays raw data in chunks of five."""
+
     while True:
         print()
         choice = input('Would you like to read some raw data? Please enter \'Yes\' or \'No\'\n').lower()

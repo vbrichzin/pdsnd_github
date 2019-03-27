@@ -32,7 +32,7 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     print()
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+
     while True:
         city = input('Chicago, New York City, or Washington?\n').lower()
         print()
@@ -42,8 +42,6 @@ def get_filters():
         city = CITY_DATA[city]
         break
 
-    # TO DO: get user input for month (all, january, february, ... , june)
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         datafilter=input('You can filter by entering \'month\' or \'day\' or have the complete dataset analyzed by entering \'all\'.\n').lower()
         print()
@@ -106,21 +104,18 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
     most_common_month = df['month'].mode()[0]
     for month in MONTH_DATA:
         if MONTH_DATA[month] == most_common_month:
             most_common_month = month.title()
     print('The most common month for travel is {}'.format(most_common_month))
 
-    # TO DO: display the most common day of week
     most_common_day = df['day_of_week'].mode()[0]
     for day in WEEK_DATA:
         if WEEK_DATA[day] == most_common_day:
             most_common_day = day.title()
     print('The most common day of week for travel is {}'.format(most_common_day))
 
-    # TO DO: display the most common start hour
     df['hour']=pd.to_datetime(df['Start Time']).dt.hour
     most_common_hour = df['hour'].mode()[0]
     print('The most common hour for travel is {}'.format(most_common_hour))
@@ -135,15 +130,12 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO DO: display most commonly used start station
     print()
     print('Most commonly used start station as per the data was {}'.format(df['Start Station'].mode()[0]))
 
-    # TO DO: display most commonly used end station
     print()
     print('Most commonly used end station as per the data was {}'.format(df['End Station'].mode()[0]))
 
-    # TO DO: display most frequent combination of start station and end station trip
     print()
     station_combination = df['Start Station'] + ' to ' + df['End Station']
     most_common_station_combination = station_combination.mode()[0]
@@ -161,12 +153,11 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     travel_durations = pd.to_datetime(df['End Time']) - pd.to_datetime(df['Start Time'])
-    # TO DO: display total travel time
+
     print()
     td_sum = travel_durations.sum()
     print('Passengers travelled a total of {}.'.format(td_sum))
 
-    # TO DO: display mean travel time
     print()
     td_mean = travel_durations.mean()
     print('Passengers travelled an average of {}.'.format(td_mean))
@@ -181,15 +172,12 @@ def user_stats(df):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-
-    # TO DO: Display counts of user types
     print()
     types_of_users = df.groupby('User Type', as_index = False).count()
     print('Number of types of users are {}'.format(len(types_of_users)))
     for i in range(len(types_of_users)):
         print('{}: {}'.format(types_of_users['User Type'][i], types_of_users['End Time'][i]))
 
-    # TO DO: Display counts of gender
     print()
     if 'Gender' not in df:
         print('Sorry, but there is no gender data for this city to evaluate.')
@@ -201,7 +189,6 @@ def user_stats(df):
         print('Gender data for {} users is not available.'.format(len(df)-gender_of_users['End Time'][0]-gender_of_users['End Time'][1]))
         # This calculate the total number of users minus the ones where the explicit gender was mentioned to give the number of passengers that didn't provide gender data
 
-    # TO DO: Display earliest, most recent, and most common year of birth
     print()
     if 'Birth Year' not in df:
         print('Sorry, but there is no data related to birth year of users for this city to evaluate.')

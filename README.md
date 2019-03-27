@@ -12,3 +12,4 @@ The `bikeshare.py` file is the interactive analysis file that analyzes the usage
 
 ### Credits
 This project is part of the nanodegree course from Udacity on [Programming for Data Science](https://eu.udacity.com/course/programming-for-data-science-nanodegree--nd104).
+For the question of most common birth year of the customers in the analyzed data I took inspiration from this [StackOverflow](https://stackoverflow.com/questions/48590268/pandas-get-the-most-frequent-values-of-a-column/51053916) post on the `idxmax` function.
